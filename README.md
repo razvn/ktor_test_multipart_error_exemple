@@ -7,7 +7,12 @@ If in `handlePost`method the `addHeader` and `setBody` method are commented work
 No problem when running the application for real and doing a curl:
 
 ```
-curl -X POST http://localhost:8080 \
-   --header 'Content-Type: multipart/form-data; boundary=---------BOUNDARY' \
-   --data-binary @demo.html
+curl -F @README.md http://localhost:8080/stuck
 ```
+
+Endoints:
+ - `/stuck`: Running the test runs forever. Covered by `fail when multipart NOT USED` test. Just a `call.receiveMultipart()` 
+ - `/stuck2`: Running the test runs forever. Coverted by `fail when multipart just readPart`. Just adding a `readPart()`
+ - `/ok`: Success getting the filename. Coverd by `working when multiparts are read`. Call to `forEachPart`
+ - `/ok2`: Success only forEachPart used. Coverd by `working when multiparts are just forEachPart`. Call to `forEachPart` that does nothing
+ 
